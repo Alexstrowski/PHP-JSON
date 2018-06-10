@@ -1,0 +1,38 @@
+<?php 
+	$host = "localhost";
+	$dbname = "test";
+	$user = "root";
+	$pass = "";
+	$conexion = null;
+	
+	if (isset($_POST['monedas']) && isset($_POST['id_usuario'])) {
+
+		$conexion=mysqli_connect($host,$user,$pass,$dbname);
+		
+		$monedas=$_POST['monedas'];
+		$id=$_POST['id_usuario'];
+
+		$update="UPDATE usuario SET monedas = '{$monedas}' WHERE id_usuario = '{$id}'";
+
+		$resultado_update=mysqli_query($conexion,$insert);
+
+		if($resultado_update){
+			
+			$json=true;
+			mysqli_close($conexion);
+			echo json_encode($json);
+
+		}else{
+			
+			$json=NULL;
+			mysqli_close($conexion);
+			echo json_encode($json);
+
+	}else{
+		$json='No se pudo comunicar con el servidor';
+		mysqli_close($conexion);
+		echo json_encode($json);
+	}
+	
+
+ ?>

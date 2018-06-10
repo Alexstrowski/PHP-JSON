@@ -1,10 +1,11 @@
 <?php
 	class Conexion{
 		private $host = "localhost";
-		private $dbname = "bdcg";
+		private $dbname = "test";
 		private $user = "root";
 		private $password = "";
 		private $conexion = null;
+		
 		public function getConexion(){
 			try{
 				$this->conexion = new PDO(
