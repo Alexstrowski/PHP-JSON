@@ -5,51 +5,35 @@
 	$pass = "";
 	$conexion = null;
 	
+	if (isset($_GET['monedas']) && isset($_GET['id_usuario'])) {
 
-	if (isset($_POST['respuesta']) && isset($_POST["id"])) {
-		
-		$respuesta=$_POST['respuesta'];
 		$conexion=mysqli_connect($host,$user,$pass,$dbname);
+		
+		$monedas=$_GET['monedas'];
+		$id=$_GET['id_usuario'];
 
-		if($respuesta='normal'){
+		$update="UPDATE usuario SET monedas = '{$monedas}' WHERE id_usuario = '{$id}'";
 
-		}else(){
+		$resultado_update=mysqli_query($conexion,$update);
 
-		}
-
-	}else{
-
-		$json='No se pudo comunicar con el servidor';
-		mysqli_close($conexion);
-		echo json_encode($json);
-
-	}
-	
-	$preguntas=$_POST['preguntas'];
-	//$preguntas = json_decode($preguntas, true);
-	
-	
-		foreach ($preguntas as $p){
+		if($resultado_update){
 			
-			$insert="INSERT INTO respuesta(id_usuario,id_pregunta,acertada) VALUES ('".$p['id_usuario']."','".$p['id_pregunta']."','".$p['acertada']."')";
-			$resultado_insert=mysqli_query($conexion,$insert);
-
-		}
-/*
-		if($resultado_insert){
 			$json=true;
 			mysqli_close($conexion);
 			echo json_encode($json);
-		}
-		else{
+
+		}else{
+			
 			$json=NULL;
 			mysqli_close($conexion);
 			echo json_encode($json);
-		}*/
-	/*}else{
-			
-			$json='No se pudo comunicar con el servidor';
-			mysqli_close($conexion);
-			echo json_encode($json);
-	}*/
+
+		}
+	}else{
+		$json='No se pudo comunicar con el servidor';
+		mysqli_close($conexion);
+		echo json_encode($json);
+	}
+	
+
  ?>

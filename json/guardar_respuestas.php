@@ -8,13 +8,15 @@
 
 	header('Access-Control-Allow-Origin: *');
 
-	if(isset($_POST["preguntas"]) ) {
+	if(isset($_POST["respuestas"]) ) {
 
-		$preguntas=$_POST['preguntas'];
+		
+
+		$respuestas=$_POST['respuestas'];
 
 		$conexion=mysqli_connect($host,$user,$pass,$dbname);
 
-		foreach ($preguntas as $p){
+		foreach ($respuestas as $p){
 			
 
 			$insert="INSERT INTO respuesta(id_usuario,id_pregunta,acertada) VALUES ('".$p['id_usuario']."','".$p['id_pregunta']."','".$p['acertada']."')";
@@ -22,6 +24,10 @@
 
 
 		}
+
+		$json=true;
+		mysqli_close($conexion);
+		echo json_encode($json);
 
 	}else{
 			

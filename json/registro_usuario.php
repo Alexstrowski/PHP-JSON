@@ -1,9 +1,9 @@
 <?php
 
 $host = "localhost";
-$dbname = "test";
-$user = "root";
-$pass = "";
+$dbname = "u736411459_bd";
+$user = "u736411459_alexk";
+$pass = "ruEvGTzVY1F7";
 $conexion = null;
 
 $json=array();
@@ -26,14 +26,6 @@ $json=array();
 		$resultado_insert=mysqli_query($conexion,$insert);
 
 		if($resultado_insert){
-
-			/*$consulta = "SELECT * FROM USUARIO WHERE id_usuario = '{$usuario}' AND password = '{$password}' ";
-
-			$resultado=mysqli_query($conexion,$consulta);
-			
-			if($registro=mysqli_fetch_array($resultado)){
-				$json[]=$registro;
-			}*/
 
 			$json=true;
 			mysqli_close($conexion);
