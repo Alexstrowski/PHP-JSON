@@ -10,16 +10,15 @@ include 'Conexion.php';
 		$conexion = new Conexion();
 		$cnn = $conexion->getConexion();
 
-		$consulta="SELECT p.enunciado,r.acertada
-			FROM respuesta r
-			INNER JOIN pregunta p ON (r.id_pregunta = p.id_pregunta)
-			WHERE p.id_subtema=:id_subtema AND r.id_usuario=:id_usuario";
+		$consulta="SELECT completado
+			FROM usuario_subtema
+			WHERE id_subtema=:id_subtema AND id_usuario=:id_usuario";
 
 		$statement = $cnn->prepare($consulta);
-		$statement->bindParam(':id_subtema', $_GET['id_subtema']);
-		$statement->bindParam(':id_usuario', $_GET['id_usuario']);
+		$statement->bindParam(':id_subtema', $id_subtema);
+		$statement->bindParam(':id_usuario', $id_usuario);
 		$valor = $statement->execute();
-		var_dump($consulta);
+		
 
 		if($valor){
 
